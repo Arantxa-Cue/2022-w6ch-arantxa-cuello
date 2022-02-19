@@ -1,5 +1,9 @@
 const Robot = (robot) => {
-  return <li></li>;
+  return (
+    <li>
+      <button>Delete</button>
+    </li>
+  );
 };
 
 export default Robot;

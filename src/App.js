@@ -1,7 +1,6 @@
 import "./App.css";
 import RobotsPage from "./pages/RobotsPage/RobotsPage";
-import { Route, Routes } from "react-router-dom";
-
+import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
