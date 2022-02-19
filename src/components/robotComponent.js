@@ -1,11 +1,13 @@
 const Robot = ({ robot: { imagen, name, fecha, resistencia, velocidad } }) => {
   return (
     <li>
-      <p>{name}</p>
+      <h3>{name}</h3>
       <img src={imagen} alt="ejemplo" />
-      <p>{fecha}</p>
-      <p>Resistencia: {resistencia}</p>
-      <p>Velocidad: {velocidad}</p>
+      <div>
+        <p>Resistencia: {resistencia}</p>
+        <p>Velocidad: {velocidad}</p>
+        <p>{fecha}</p>
+      </div>
       <button>Delete</button>
     </li>
   );
