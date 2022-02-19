@@ -33,4 +33,10 @@ describe("Given a robotsReducer function", () => {
       expect(newRobotsResults).toEqual(newRobots);
     });
   });
+  describe("When it doesn't receive either a state or an action", () => {
+    test("Then it should return an empty robots list", () => {
+      const newRobots = robotsReducer();
+      expect(newRobots).toHaveLength(0);
+    });
+  });
 });
