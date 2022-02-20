@@ -54,7 +54,7 @@ const CreateRobot = ({ isEditing, _id }) => {
       <h3>Create a robot</h3>
       <form noValidate autoComplete="off" onSubmit={submitForm}>
         <div className="form-data">
-          <label htmlFor="name">Name:</label>{" "}
+          <label htmlFor="name">Nombre:</label>{" "}
           <input type="text" id="name" onChange={changeData} />
         </div>
         <div className="form-data">
@@ -79,7 +79,11 @@ const CreateRobot = ({ isEditing, _id }) => {
             ))}
           </select>
         </div>
-        <button type="submit" disabled={isFormInvalid}>
+        <div>
+          <label htmlFor=" ">Fecha:</label>
+          <input type="date" />
+        </div>
+        <button className="create" type="submit" disabled={isFormInvalid}>
           {buttonText}
         </button>
       </form>
