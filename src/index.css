@@ -13,8 +13,10 @@ code {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   text-align: center;
+  padding: 10px;
 }
 
 ul {
@@ -37,4 +39,12 @@ p {
 li > button {
   text-align: center;
   border-radius: 10px;
+}
+
+form {
+  text-align: center;
+  padding: 40px;
+}
+.form-data {
+  padding: 10px;
 }

@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createRobotThunk } from "../redux/thunks/robotsThunks";
+import {
+  createRobotThunk,
+  loadCurrentRobotThunk,
+} from "../redux/thunks/robotsThunks";
 
-const CreateRobot = () => {
+const CreateRobot = ({ isEditing, _id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const blankForm = {
     name: "",
@@ -13,6 +18,9 @@ const CreateRobot = () => {
   };
 
   const [formData, setFormData] = useState(blankForm);
+
+  const currentRobot = useSelector((state) => state.currentRobot);
+  const buttonText = isEditing ? "Update" : "Create";
 
   const changeData = (event) => {
     setFormData({
@@ -27,41 +35,55 @@ const CreateRobot = () => {
     navigate("/robots");
   };
 
-  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const isFormInvalid = formData.name === "" || formData.group === "";
-  //const buttonText = isEditing ? "Update" : "Create";
+
+  useEffect(() => {
+    if (isEditing) {
+      dispatch(loadCurrentRobotThunk(_id));
+    }
+  }, [dispatch, isEditing, _id]);
+
+  useEffect(() => {
+    if (currentRobot) {
+      setFormData(currentRobot);
+    }
+  }, [currentRobot]);
+
   return (
-    <form noValidate autoComplete="off" onSubmit={submitForm}>
-      <div className="form-data">
-        <label htmlFor="name">Name:</label>{" "}
-        <input type="text" id="name" onChange={changeData} />
-      </div>
-      <div className="form-data">
-        <label htmlFor="resistencia">Resistencia:</label>{" "}
-        <select id="resistencia" value={formData.numbers} onChange={changeData}>
-          <option value="">Select option</option>
-          {numbers.map((number) => (
-            <option key={number} value={number}>
-              {number}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="form-data">
-        <label htmlFor="velocidad">Velocidad:</label>{" "}
-        <select id="velocidad" value={formData.numbers} onChange={changeData}>
-          <option value="">Select option</option>
-          {numbers.map((number) => (
-            <option key={number} value={number}>
-              {number}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button type="submit" disabled={isFormInvalid}>
-        Create
-      </button>
-    </form>
+    <>
+      <h3>Create a robot</h3>
+      <form noValidate autoComplete="off" onSubmit={submitForm}>
+        <div className="form-data">
+          <label htmlFor="name">Name:</label>{" "}
+          <input type="text" id="name" onChange={changeData} />
+        </div>
+        <div className="form-data">
+          <label htmlFor="number">Resistencia:</label>{" "}
+          <select id="number" value={formData.numbers} onChange={changeData}>
+            <option value="">Select option</option>
+            {numbers.map((number) => (
+              <option key={number} value={number}>
+                {number}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="form-data">
+          <label htmlFor="number">Velocidad:</label>{" "}
+          <select id="number" value={formData.numbers} onChange={changeData}>
+            <option value="">Select option</option>
+            {numbers.map((number) => (
+              <option key={number} value={number}>
+                {number}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button type="submit" disabled={isFormInvalid}>
+          {buttonText}
+        </button>
+      </form>
+    </>
   );
 };
 
