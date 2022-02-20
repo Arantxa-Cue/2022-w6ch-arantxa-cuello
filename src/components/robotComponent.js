@@ -1,9 +1,9 @@
 const Robot = ({
-  robot: { imagen, name, fecha, resistencia, velocidad, id },
+  robot: { imagen, name, fecha, resistencia, velocidad, _id },
   onDelete,
 }) => {
   const onClickDelete = () => {
-    onDelete(id);
+    onDelete(_id);
   };
   return (
     <li>

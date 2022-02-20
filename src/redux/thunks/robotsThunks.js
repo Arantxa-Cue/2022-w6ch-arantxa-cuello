@@ -12,9 +12,12 @@ export const loadRobotsThunk = async (dispatch) => {
 };
 
 export const deleteRobotThunk = (id) => async (dispatch) => {
-  const response = await fetch(`${process.env.REACT_APP_API_URL}${id}`, {
-    method: "DELETE",
-  });
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/delete/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
   if (response.ok) {
     dispatch(deleteRobotAction(id));
   }
