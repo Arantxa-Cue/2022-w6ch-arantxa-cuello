@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/robots" element={<RobotsPage />} />
         <Route path="/" element={<Navigate to="/robots" />} />
-        <Route path="/create" element={<CreateRobot />} />
+        <Route path="robots/create" element={<CreateRobot />} />
       </Routes>
     </>
   );
