@@ -6,6 +6,7 @@ const RobotsPage = () => {
   return (
     <>
       <h2>Robots list</h2>
+
       <Robots robot={robot} />
     </>
   );
