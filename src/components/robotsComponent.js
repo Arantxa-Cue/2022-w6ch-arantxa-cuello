@@ -21,7 +21,11 @@ const Robots = () => {
   return (
     <ul>
       {robots.map((robot) => (
-        <Robot key={robot._id} robot={robot} onDelete={deleteRobot} />
+        <Robot
+          key={robot._id}
+          robot={robot}
+          onDelete={() => deleteRobot(robot._id)}
+        />
       ))}
     </ul>
   );
