@@ -1,4 +1,10 @@
-const Robot = ({ robot: { imagen, name, fecha, resistencia, velocidad } }) => {
+const Robot = ({
+  robot: { imagen, name, fecha, resistencia, velocidad, id },
+  onDelete,
+}) => {
+  const onClickDelete = () => {
+    onDelete(id);
+  };
   return (
     <li>
       <h3>{name}</h3>
@@ -8,7 +14,7 @@ const Robot = ({ robot: { imagen, name, fecha, resistencia, velocidad } }) => {
         <p>Velocidad: {velocidad}</p>
         <p>{fecha}</p>
       </div>
-      <button>Delete</button>
+      <button onClick={onClickDelete}>Delete</button>
     </li>
   );
 };

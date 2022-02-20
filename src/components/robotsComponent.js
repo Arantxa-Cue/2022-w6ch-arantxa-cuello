@@ -1,11 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadRobotsThunk } from "../redux/thunks/robotsThunks";
+import {
+  loadRobotsThunk,
+  deleteRobotThunk,
+} from "../redux/thunks/robotsThunks";
 import Robot from "./robotComponent";
 
 const Robots = () => {
   const robots = useSelector((state) => state.robots);
   const dispatch = useDispatch();
+
+  const deleteRobot = (id) => {
+    dispatch(deleteRobotThunk(id));
+  };
 
   useEffect(() => {
     dispatch(loadRobotsThunk);
@@ -14,7 +21,7 @@ const Robots = () => {
   return (
     <ul>
       {robots.map((robot) => (
-        <Robot key={robot._id} robot={robot} />
+        <Robot key={robot._id} robot={robot} onDelete={deleteRobot} />
       ))}
     </ul>
   );
